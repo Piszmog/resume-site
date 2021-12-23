@@ -7,7 +7,7 @@
      */
     export let entries: ToolboxEntry[] = [];
 
-    const compare = (a: ToolboxEntry, b: ToolboxEntry) => {
+    const compare = (a: ToolboxEntry, b: ToolboxEntry): number => {
         if (a.type < b.type) {
             return -1;
         }

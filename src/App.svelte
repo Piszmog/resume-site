@@ -24,14 +24,28 @@
     const expPromise = getExp();
     const toolPromise = db.get("tool");
 
+    const toDate = (date: string): Date => {
+        const dateParts = date.split(" ");
+        return new Date(Date.parse(`${dateParts[0]} 1, ${dateParts[1]}`));
+    }
+
+    const compareRoles = (a, b): number => {
+        return toDate(b.start).getTime() - toDate(a.start).getTime();
+    }
+
+    const compareCompanies = (a, b): number => {
+        return toDate(b.roles[0].start).getTime() - toDate(a.roles[0].start).getTime();
+    }
+
     async function getExp() {
         let companies = await db.get("companies");
         for (const company of companies) {
             for (let i = 0; i < company.roles.length; i++) {
                 company.roles[i] = await db.getById('experience', company.roles[i].id);
             }
+            company.roles.sort(compareRoles);
         }
-        return companies;
+        return companies.sort(compareCompanies);
     }
 </script>
 
