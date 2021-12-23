@@ -7,6 +7,7 @@
     import Biography from "./components/Biography.svelte";
     import Footer from "./components/Footer.svelte";
     import Experience from "./components/Experience.svelte";
+    import type {ToolboxEntry} from "./models/toolbox";
 
     const config: Config = {
         apiKey: "AIzaSyDxupXMbBKNkyUind2EsCBTqNFB1Xs930U",
@@ -23,48 +24,6 @@
     const eduPromise = db.get("edu");
     const expPromise = getExp();
     const toolPromise = db.get("tool");
-    // const tools = [
-    //     {
-    //         type: "plan",
-    //         specifics: [
-    //             "JIRA",
-    //             "GitHub",
-    //         ]
-    //     },
-    //     {
-    //         type: "develop",
-    //         specifics: [
-    //             "IntelliJ",
-    //             "GoLand",
-    //             "Webstorm",
-    //             "PyCharm",
-    //         ]
-    //     },
-    //     {
-    //         type: "code",
-    //         specifics: [
-    //             "Java",
-    //             "Kotlin",
-    //             "Go",
-    //             "Python",
-    //         ]
-    //     },
-    //     {
-    //         type: "model",
-    //         specifics: [
-    //             "JSON",
-    //             "YAML",
-    //             "XML",
-    //         ]
-    //     },
-    //     {
-    //         type: "share",
-    //         specifics: [
-    //             "Git",
-    //             "Subversion",
-    //         ]
-    //     },
-    // ];
 
     async function getExp() {
         let companies = await db.get("companies");

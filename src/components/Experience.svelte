@@ -1,6 +1,5 @@
 <script lang="ts">
     import type {Role} from "../models/experience";
-    import {ChangeReason} from "../models/experience";
 
     /**
      * The name of the place where the experience was received (e.g. company name).

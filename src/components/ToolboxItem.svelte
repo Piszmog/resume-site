@@ -76,6 +76,6 @@
     </div>
     <div class="ml-10">
         <p class="text-gray-900 font-semibold">{type.charAt(0).toUpperCase() + type.slice(1)}</p>
-        <p class="text-black text-xs">{specifics.join(', ')}</p>
+        <p class="text-black text-xs">{specifics.sort().join(', ')}</p>
     </div>
 </div>
