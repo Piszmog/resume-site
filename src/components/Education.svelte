@@ -1,8 +1,23 @@
 <script lang="ts">
-
     import type {Education} from "../models/education";
 
+    /**
+     * The list of education items.
+     */
     export let educations: Education[];
+
+    const toDate = (date: string): Date => {
+        const dateParts = date.split(" ");
+        return new Date(Date.parse(`${dateParts[0]} 1, ${dateParts[1]}`));
+    }
+
+    const dateString = (date: string): string => {
+        if (date === "Present") {
+            return "Now";
+        }
+        const actualDate = toDate(date);
+        return `${actualDate.toLocaleDateString('default', {month: 'short'})} ${actualDate.getFullYear()}`;
+    }
 </script>
 
 
@@ -10,8 +25,10 @@
     <div class="relative mt-5 text-left">
         {#each educations as edu}
             <div class="flex items-center relative">
-                <div class="hidden md:block w-20">
-                    <div class="text-xs font-bold italic">{edu.start} - {edu.end}</div>
+                <div class="hidden md:block w-20 text-center">
+                    <div class="text-xs font-bold italic">{dateString(edu.end)}</div>
+                    <div class="text-xs italic">-</div>
+                    <div class="text-xs font-bold italic">{dateString(edu.start)}</div>
                 </div>
 
                 <div class="hidden sm:block w-1 bg-black absolute h-full left-1/2 transform -translate-x-1/2 md:left-24 top-2 z-10"></div>

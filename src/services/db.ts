@@ -1,4 +1,5 @@
-import {collection, doc, DocumentData, Firestore, getDoc, getDocs, getFirestore} from 'firebase/firestore/lite';
+import type {DocumentData} from 'firebase/firestore/lite'
+import {collection, doc, Firestore, getDoc, getDocs, getFirestore} from 'firebase/firestore/lite';
 import type {App} from "./app";
 
 export class DB {

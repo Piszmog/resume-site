@@ -9,14 +9,29 @@
      * The roles that were done at the place.
      */
     export let roles: Role[];
+
+    const toDate = (date: string): Date => {
+        const dateParts = date.split(" ");
+        return new Date(Date.parse(`${dateParts[0]} 1, ${dateParts[1]}`));
+    }
+
+    const dateString = (date: string): string => {
+        if (date === "Present") {
+            return "Now";
+        }
+        const actualDate = toDate(date);
+        return `${actualDate.toLocaleDateString('default', {month: 'short'})} ${actualDate.getFullYear()}`;
+    }
 </script>
 
 <div class="md:w-2/3">
     <div class="relative mt-5 text-left">
         {#each roles as role}
             <div class="flex items-center relative">
-                <div class="hidden md:block w-20">
-                    <div class="text-xs font-bold italic">{role.start} - {role.end}</div>
+                <div class="hidden md:block w-10 text-center">
+                    <div class="text-xs font-bold italic">{dateString(role.end)}</div>
+                    <div class="text-xs italic">-</div>
+                    <div class="text-xs font-bold italic">{dateString(role.start)}</div>
                 </div>
 
                 <div class="hidden sm:block w-1 bg-black absolute h-full left-1/2 transform -translate-x-1/2 md:left-20 top-2 z-10"></div>
@@ -43,10 +58,10 @@
                         </svg>
                     {/if}
                 </div>
-                <div class="ml-10">
+                <div class="ml-16 justify-center">
                     <div class="font-bold">{name}</div>
                     <div class="italic md:mb-4">{role.title}</div>
-                    <div class="mb-10">
+                    <div class="mb-10 w-96 break-words">
                         {role.description}
                         <ul class="list-outside list-disc ml-6">
                             {#each role.details as details}
