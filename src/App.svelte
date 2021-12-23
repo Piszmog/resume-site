@@ -7,7 +7,6 @@
     import Biography from "./components/Biography.svelte";
     import Footer from "./components/Footer.svelte";
     import Experience from "./components/Experience.svelte";
-    import type {ToolboxEntry} from "./models/toolbox";
 
     const config: Config = {
         apiKey: "AIzaSyDxupXMbBKNkyUind2EsCBTqNFB1Xs930U",
